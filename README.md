@@ -77,3 +77,21 @@ This theme is based off of the lovely [Bear Blog](https://github.com/HermanMarti
 3. Every push to `main` auto-deploys
 
 中文：在 Vercel 导入本仓库即可；静态产物默认在 `dist/`，推送 `main` 后自动上线。无需 CMS。
+
+## 📝 Keystatic Admin / 用 Keystatic 写文章
+
+Local admin UI (recommended for day-to-day writing):
+
+```sh
+npm run dev
+```
+
+Open [http://127.0.0.1:4321/keystatic](http://127.0.0.1:4321/keystatic) → **Blog** → create/edit posts. Saving writes Markdown under `src/content/blog/`; commit & push to redeploy on Vercel.
+
+中文：本地 `npm run dev` 后打开 `/keystatic`，在后台改文章即可；保存会写回仓库里的 Markdown，推送 `main` 后 Vercel 自动上线。
+
+> Existing sample `using-mdx.mdx` uses MDX `import`s — edit that one in the code editor. New posts from Keystatic use plain `.md` and work in the Admin UI.
+
+### Optional: edit on the live site (GitHub storage)
+
+To use `/keystatic` on the deployed Vercel URL, switch `storage.kind` to `'github'` in `keystatic.config.ts` and follow [Keystatic’s GitHub storage guide](https://keystatic.com/docs/github-mode) (GitHub App / OAuth). Until then, local Admin + `git push` is the lightest workflow.
