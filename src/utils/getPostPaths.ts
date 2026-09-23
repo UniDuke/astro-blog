@@ -1,0 +1,49 @@
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { BLOG_PATH } from "@/content.config";
+import { slugifyStr } from "./slugify";
+import config from "@/config";
+
+function getPostPathSegments(filePath: string | undefined): string[] {
+  return (
+    filePath
+      ?.replace(BLOG_PATH, "")
+      .split("/")
+      .filter(path => path !== "")
+      .filter(path => !path.startsWith("_"))
+      .slice(0, -1)
+      .map(segment => slugifyStr(segment)) ?? []
+  );
+}
+
+function getIdSlug(id: string): string {
+  const postId = id.split("/");
+  return postId.length > 0 ? String(postId[postId.length - 1]) : id;
+}
+
+function getPostSlugPath(id: string, filePath: string | undefined): string {
+  const pathSegments = getPostPathSegments(filePath);
+  const slug = getIdSlug(id);
+  return pathSegments.length > 0
+    ? [...pathSegments, slug].join("/")
+    : String(slug);
+}
+
+/**
+ * Slug-only path for `getStaticPaths` route params (no leading slash).
+ * Canonical article URLs are root-level: /{slug}/
+ */
+export function getPostSlug(id: string, filePath: string | undefined): string {
+  return getPostSlugPath(id, filePath);
+}
+
+/**
+ * Canonical article URL at site root (URL parity with old NotionNext site).
+ * e.g. /whatischatgpt/  (not /posts/...)
+ */
+export function getPostUrl(
+  id: string,
+  filePath: string | undefined,
+  locale: string | undefined = config.site.lang
+): string {
+  return getRelativeLocaleUrl(locale, getPostSlugPath(id, filePath));
+}

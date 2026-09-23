@@ -1,0 +1,63 @@
+---
+import { getCollection, render } from "astro:content";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Main from "@/components/Main.astro";
+import { useTranslations } from "@/i18n";
+import config from "@/config";
+
+export async function getStaticPaths() {
+  const notes = await getCollection("notes", ({ data }) => !data.draft);
+  return notes.map(note => ({
+    params: { slug: note.id },
+    props: { note },
+  }));
+}
+
+const { note } = Astro.props;
+const { Content } = await render(note);
+const locale = Astro.currentLocale ?? config.site.lang;
+const t = useTranslations(locale);
+---
+
+<Layout title={`${note.data.title} | ${config.site.title}`}>
+  <Header />
+  <Main pageTitle={note.data.title} pageDesc={t.pages.notesTitle}>
+    <p class="text-muted-foreground mb-6 text-sm">
+      <time datetime={note.data.publishDate.toISOString()}>
+        {note.data.publishDate.toLocaleString("zh-CN", {
+          timeZone: "Asia/Shanghai",
+        })}
+      </time>
+      {
+        note.data.link && (
+          <>
+            {" · "}
+            <a
+              href={note.data.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="underline decoration-dashed"
+            >
+              外部链接
+            </a>
+          </>
+        )
+      }
+    </p>
+    <article class="app-prose prose max-w-none">
+      <Content />
+    </article>
+    <p class="mt-10">
+      <a
+        href={getRelativeLocaleUrl(locale, "notes")}
+        class="text-accent hover:underline"
+      >
+        ← {t.home.allNotes}
+      </a>
+    </p>
+  </Main>
+  <Footer />
+</Layout>

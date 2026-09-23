@@ -1,0 +1,15 @@
+---
+import { getCollection } from "astro:content";
+import { getPostSlug } from "@/utils/getPostPaths";
+
+/** Legacy AstroPaper path → canonical root article URL */
+export async function getStaticPaths() {
+  const posts = await getCollection("posts", ({ data }) => !data.draft);
+  return posts.map(post => ({
+    params: { slug: getPostSlug(post.id, post.filePath) },
+  }));
+}
+
+const slug = Astro.params.slug;
+return Astro.redirect(`/${slug}/`, 301);
+---
