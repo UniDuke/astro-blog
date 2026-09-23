@@ -4,7 +4,7 @@ export default defineAstroPaperConfig({
   site: {
     url: "https://www.uniduke.ac.cn",
     title: "大橘官的精神角落",
-    description: "聊聊生活撩撩猫",
+    description: "Enjoy Everyday ！",
     author: "大橘官",
     profile: "https://www.uniduke.ac.cn/about/",
     ogImage: "og.jpg",
