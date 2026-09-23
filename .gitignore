@@ -37,3 +37,5 @@ compose.override.yaml
 
 # Do not vendor theme CI (gh token lacks workflow scope)
 .github/workflows/
+.vercel
+.env*
