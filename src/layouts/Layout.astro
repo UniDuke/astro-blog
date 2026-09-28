@@ -115,11 +115,18 @@ const rssHref = getRelativeLocaleUrl(
     </script>
 
     <ClientRouter />
+
+    <!--
+      Future AdSense: place publisher <script async src="...adsbygoogle.js">
+      in <head> only after approval. Do not load live ad scripts until then.
+    -->
   </head>
   <body
     class="bg-background font-app text-foreground selection:bg-accent/75 selection:text-accent-foreground flex min-h-svh flex-col"
   >
+    <!-- Future AdSense slot: header / above-content unit (ins.adsbygoogle) -->
     <slot />
+    <!-- Future AdSense slot: in-article or footer unit (ins.adsbygoogle) -->
     <script>
       import "@/scripts/theme";
     </script>

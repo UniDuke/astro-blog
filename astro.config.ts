@@ -30,8 +30,30 @@ export default defineConfig({
   integrations: [
     mdx(),
     sitemap({
-      filter: page =>
-        config.features?.showArchives !== false || !page.endsWith("/archives/"),
+      filter: page => {
+        // Hide archives when the feature is disabled
+        if (
+          config.features?.showArchives === false &&
+          page.endsWith("/archives/")
+        ) {
+          return false;
+        }
+        // Canonical posts are root /{slug}/; exclude legacy redirect locs
+        // /blog/{slug}/ and /posts/{slug}/ (keep /posts/ listing + /posts/N/)
+        try {
+          const { pathname } = new URL(page);
+          if (pathname === "/blog" || pathname.startsWith("/blog/")) {
+            return false;
+          }
+          const postsMatch = pathname.match(/^\/posts\/([^/]+)\/?$/);
+          if (postsMatch && !/^\d+$/.test(postsMatch[1])) {
+            return false;
+          }
+        } catch {
+          // keep page if URL parsing fails
+        }
+        return true;
+      },
     }),
     react(),
     markdoc(),
