@@ -3,7 +3,7 @@ author: 大橘官
 pubDatetime: 2026-02-03T00:00:00+08:00
 title: "Ubuntu 全自动出海：Mihomo + TUN 模式保姆级教程"
 featured: false
-draft: false
+draft: true
 tags:
   - Linux
 description: "本文教你如何通过 SSH 密钥管理服务器，使用 SCP 传输配置，并将 Mihomo 内核配置为系统服务，开启 TUN 模式实现全自动全局代理。"

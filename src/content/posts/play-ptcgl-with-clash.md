@@ -3,7 +3,7 @@ author: 大橘官
 pubDatetime: 2024-04-13T00:00:00+08:00
 title: "Pokemon TCG Live 使用 Clash for Windows 加速"
 featured: false
-draft: false
+draft: true
 tags:
   - Game
 description: "之前玩Pokemon TCG Live (PTCGL)尝试用Clash加速，发现无效，就改用其它游戏加速器了。所幸有两个加速器一直是免费的，例如OurPlay加速器、OO网游加速器。近日群友表示Clash也能加速PTCGL，需要设置虚拟网卡，就搜搜资料折腾一下，发现打开TUN模式，就能加速PTCGL了。"
