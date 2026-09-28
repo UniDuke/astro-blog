@@ -39,7 +39,6 @@ export default {
   footer: {
     copyright: "版权所有",
     allRightsReserved: "保留所有权利。",
-    privacy: "隐私政策",
   },
   pages: {
     tagTitle: "标签",
@@ -60,8 +59,6 @@ export default {
     notesTitle: "碎碎念",
     notesDesc: "短消息、状态更新与随手记录。",
 
-    privacyTitle: "隐私政策",
-    privacyDesc: "本站如何处理 Cookie、分析与广告相关信息。",
   },
   a11y: {
     skipToContent: "跳到正文",

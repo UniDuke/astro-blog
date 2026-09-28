@@ -1,6 +1,5 @@
 ---
 import type { HTMLAttributes } from "astro/types";
-import { getRelativeLocaleUrl } from "astro:i18n";
 import Socials from "./Socials.astro";
 import { useTranslations } from "@/i18n";
 import config from "@/config";
@@ -24,22 +23,10 @@ const currentYear = new Date().getFullYear();
     class="border-border flex flex-col items-center justify-between border-t py-6 sm:flex-row-reverse sm:py-4"
   >
     <Socials />
-    <div
-      class="my-2 flex flex-col items-center whitespace-nowrap sm:flex-row sm:items-end sm:gap-x-2"
-    >
-      <div class="flex flex-col items-center sm:flex-row">
-        <span>{t.footer.copyright} &#169; {currentYear}</span>
-        <span class="hidden sm:inline">&nbsp;|&nbsp;</span>
-        <span>{t.footer.allRightsReserved}</span>
-      </div>
-      {/* Near-invisible but still crawlable/clickable for AdSense */}
-      <a
-        href={getRelativeLocaleUrl(locale, "privacy")}
-        class="text-foreground/[0.08] hover:text-foreground/30 mt-1 text-[10px] leading-none tracking-wide no-underline transition-colors sm:mt-0"
-        aria-label={t.footer.privacy}
-      >
-        {t.footer.privacy}
-      </a>
+    <div class="my-2 flex flex-col items-center whitespace-nowrap sm:flex-row">
+      <span>{t.footer.copyright} &#169; {currentYear}</span>
+      <span class="hidden sm:inline">&nbsp;|&nbsp;</span>
+      <span>{t.footer.allRightsReserved}</span>
     </div>
   </div>
 </footer>
