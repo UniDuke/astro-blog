@@ -37,7 +37,6 @@ export interface UIStrings {
   footer: {
     copyright: string;
     allRightsReserved: string;
-    privacy: string;
   };
   pages: {
     tagTitle: string;
@@ -58,8 +57,6 @@ export interface UIStrings {
     notesTitle: string;
     notesDesc: string;
 
-    privacyTitle: string;
-    privacyDesc: string;
   };
   a11y: {
     skipToContent: string;
