@@ -39,6 +39,7 @@ export default {
   footer: {
     copyright: "Copyright",
     allRightsReserved: "All rights reserved.",
+    privacy: "Privacy Policy",
   },
   pages: {
     tagTitle: "Tag",
@@ -58,6 +59,9 @@ export default {
 
     notesTitle: "Notes",
     notesDesc: "Short updates and asides.",
+
+    privacyTitle: "Privacy Policy",
+    privacyDesc: "How this site handles cookies, analytics, and ads.",
   },
   a11y: {
     skipToContent: "Skip to content",
